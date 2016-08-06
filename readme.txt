@@ -1,3 +1,4 @@
 this is my github
 add
-study socket
+study socketTCP
+双向通信 socketpair
