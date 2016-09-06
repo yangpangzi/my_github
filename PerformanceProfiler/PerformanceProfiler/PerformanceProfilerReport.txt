@@ -1,0 +1,41 @@
+No.1, Desc:数据库m
+Filename:Test.cpp, Line:92, Function:Fun
+ThreadId:448, CostTime:0.94 s, CallCount:3
+ThreadId:3432, CostTime:1.56 s, CallCount:5
+ThreadId:9316, CostTime:1.25 s, CallCount:4
+TotalCostTime:29.94 s, TotalCallCount:96, AverCostTime:311 ms
+
+No.2, Desc:中间逻辑m
+Filename:Test.cpp, Line:88, Function:Fun
+ThreadId:448, CostTime:0.61 s, CallCount:3
+ThreadId:3432, CostTime:1.02 s, CallCount:5
+ThreadId:9316, CostTime:0.82 s, CallCount:4
+TotalCostTime:19.63 s, TotalCallCount:96, AverCostTime:204 ms
+
+No.3, Desc:网络m
+Filename:Test.cpp, Line:84, Function:Fun
+ThreadId:448, CostTime:0.33 s, CallCount:3
+ThreadId:3432, CostTime:0.55 s, CallCount:5
+ThreadId:9316, CostTime:0.44 s, CallCount:4
+TotalCostTime:10.54 s, TotalCallCount:96, AverCostTime:109 ms
+
+No.4, Desc:数据库s
+Filename:Test.cpp, Line:44, Function:TestSingleThead
+TotalCostTime:0.41 s, TotalCallCount:1, AverCostTime:407 ms
+
+No.5, Desc:里面
+Filename:Test.cpp, Line:54, Function:Fib
+TotalCostTime:0.38 s, TotalCallCount:1028457, AverCostTime:0 ms
+
+No.6, Desc:外面
+Filename:Test.cpp, Line:73, Function:TestFib
+TotalCostTime:0.38 s, TotalCallCount:1, AverCostTime:380 ms
+
+No.7, Desc:中间逻辑s
+Filename:Test.cpp, Line:38, Function:TestSingleThead
+TotalCostTime:0.31 s, TotalCallCount:1, AverCostTime:312 ms
+
+No.8, Desc:网络s
+Filename:Test.cpp, Line:33, Function:TestSingleThead
+TotalCostTime:0.20 s, TotalCallCount:1, AverCostTime:202 ms
+
