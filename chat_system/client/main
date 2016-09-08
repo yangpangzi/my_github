@@ -1,0 +1,50 @@
+/*************************************************************************
+	> File Name: main.cpp
+	> Author: yangle
+	> Mail: yangle4695@gmail.com 
+	> Created Time: 2016年09月07日 星期三 20时26分09秒
+ ************************************************************************/
+
+#include "udp_client.h"
+
+static void usage(const char *proc)
+{
+std::cout<<"Usage:"<<proc<<"[remote_ip][remote_port]"<<endl;
+}
+
+int main(int argc,char*argv[])
+{
+	if(argc!=3){
+		usage(argv[0]);
+		exit(3);
+	}
+	udp_client cli(argv[1],atoi(argv[2]));
+	char buf[1024];
+	std::string out;
+
+	string send_str;
+	string _name="da";
+	string _school="bi";
+	string _cmd="None";
+	udp_data data;
+	data.set_nick_name(_name);
+	data.set_school(_school);
+	data.set_cmd(_cmd);
+
+	while(1)
+	{
+		ssize_t s=read(0,buf,sizeof(buf)-1);
+		if(s>0)
+		{
+			buf[s-1]='\0';
+			data.set_msg(buf);
+			data.val_to_str(send_str);
+			cli.send_data(send_str);
+			cli.recv_data(out);
+			std::cout<<"sever echo#"<<out<<std::endl;
+
+		}
+	}
+	return 0;
+}
+
