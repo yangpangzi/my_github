@@ -76,7 +76,7 @@ void cwindow::get_str_from_win(WINDOW* _win,string& out)
 	out=buf;
 }
 
-void clear_win_line(WINDOW* _win,int begin,int num)
+void cwindow::clear_win_line(WINDOW* _win,int begin,int num)
 {
 	while(num-->0)
 	{
@@ -85,8 +85,8 @@ void clear_win_line(WINDOW* _win,int begin,int num)
 	}
 }
 
-int main()
-{
-	cwindow x;
-		return 0;
-}
+//int main()
+//{
+//	cwindow x;
+//		return 0;
+//}

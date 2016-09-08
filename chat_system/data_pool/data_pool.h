@@ -14,13 +14,13 @@
 class data_pool{
 	public:
 		data_pool(int size=128);
-		void get_dat(std::string &out);
+		void get_data(std::string &out);
 		void put_data(const std::string &in);
 		~data_pool();
 	private:
 		std::vector<std::string>pool;
 		int cap;
-		int spcae_step;
+		int space_step;
 		int data_step;
 		sem_t space_sem;
 		sem_t data_sem;			

@@ -4,17 +4,15 @@
 	> Mail: yangle4695@gmail.com 
 	> Created Time: 2016年08月24日 星期三 08时07分36秒
  ************************************************************************/
-
-#include<iostream>
 #include "udp_server.h"
+
 
 static void print_log(string _log)
 {
 	cerr<<_log<<endl;
 }
-udp_server::udp_server(const std::string &_ip,const int &_port)
-		:ip(_ip)
-		 ,port(_port)
+udp_server::udp_server(const int &_port)
+:port(_port)
 {
 	init(port);
 }
@@ -22,7 +20,7 @@ bool udp_server::register_user(const struct sockaddr_in &client,string &_msg)
 {
 	string _ip_key=inet_ntoa(client.sin_addr);
 
-	std::map<std::string,struct sockaddr_in>::iterator iter = online_user,find(_ip_key);
+	std::map<std::string,struct sockaddr_in>::iterator iter = online_user.find(_ip_key);
 	udp_data _data;
 	_data.str_to_val(_msg);
 	string _cmd;
@@ -36,7 +34,7 @@ bool udp_server::register_user(const struct sockaddr_in &client,string &_msg)
 	}
 	}else if(_cmd=="CMD_QUIT")
 	{
-		onlinue_user.erase(_ip_key);
+		online_user.erase(_ip_key);
 	}
 	return true;
 }
@@ -52,7 +50,8 @@ int udp_server::init(int _port)
 	struct sockaddr_in local;
 	local.sin_family=AF_INET;
 	local.sin_port=htons(port);
-	local.sin_addr.s_addr=htonl(INADDR_ANY);
+	//local.sin_addr.s_addr=htonl(INADDR_ANY);
+	local.sin_addr.s_addr=inet_addr("127.0.0.1");
 	if(bind(sock,(struct sockaddr*)&local,sizeof(local))<0)
 	{
 		print_log(strerror(errno));
@@ -80,9 +79,8 @@ int udp_server::send_data(const std::string &_in,\
 	return 0;
 }
 
-int udp_server::reliable_recv_msg()
+int udp_server::reliable_recv_msg(std::string &_out)
 {
-	string _out;
 	int ret =recv_data(_out);
 	if(ret>0)
 	{
@@ -103,7 +101,7 @@ int udp_server::recv_data(std::string &_out)
 	if(_size <0)
 	{
 		print_log(strerror(errno));
-		out="";
+		_out="";
 		return 1;
 	}else if(_size>=0){
 		_out=buf;

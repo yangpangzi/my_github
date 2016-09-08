@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ROOT=$(pwd)
-CONF=${ROOT}/../conf/server.conf
-BIN=${ROOT}/../chat_server
-LOG=${ROOT}/../log/server.log
+CONF=${ROOT}/conf/server.conf
+BIN=${ROOT}/chat_server
+LOG=${ROOT}//log/server.log
 
 proc=$(basename $0)
 

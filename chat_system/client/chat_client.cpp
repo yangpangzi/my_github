@@ -5,7 +5,6 @@
 	> Created Time: 2016年09月03日 星期六 01时03分54秒
  ************************************************************************/
 #include "udp_client.h"
-#include "cwindow.h"
 #include <stdio.h>
 #include <pthread.h>
 #include <vector>
@@ -13,6 +12,7 @@
 #include <algorithm>
 #include <stdlib.h>
 #include <strstream>
+#include "cwindow.h"
 
 cwindow win;
 

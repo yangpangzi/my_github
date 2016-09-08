@@ -24,10 +24,18 @@ static void *myrecv(void *arg)
 	while(1){
 		ser->reliable_recv_msg(out);
 		data.str_to_val(out);
-		std::cout<<data.get_nick_name<<std::endl;
-		std::cout<<data.get_school<<std::endl;
-		std::cout<<data.get_msg<<std::endl;
-		std::data.get_cmd<<std::endl;
+		string nick_name;
+		data.get_nick_name(nick_name);
+		string school;
+		data.get_school(school);
+		string msg;
+		data.get_msg(msg);
+		string cmd;
+		data.get_cmd(cmd);
+		std::cout<<nick_name<<std::endl;
+		std::cout<<school<<std::endl;
+		std::cout<<msg<<std::endl;
+		std::cout<<cmd<<std::endl;
 	}
 }
 
@@ -37,13 +45,15 @@ static void usage(const char *proc)
 
 }
 
-int main()
+int main(int argc,char *argv[])
 {
 	if(argc !=3){
-		usag(argv[0]);
+		usage(argv[0]);
 		exit(3);
 	}
-    udp_server ser(argv[1],atoi(argv[2]));
+	int port=atoi(argv[2]);
+    udp_server ser;
+//	ser.init(port);
 	pthread_t id1,id2;
 	pthread_create(&id1,NULL,myrecv,(void*)&ser);
 	pthread_create(&id2,NULL,mybrocast,(void*)&ser);

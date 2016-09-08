@@ -16,7 +16,7 @@ LIB_A=-L$(LIB)/jsoncpp/lib -L$(LIB)/ncurse/lib
 
 CC=g++
 FLAGS=$(INCLUDE)
-LDFLAGS=$(LIB_A) -lpthread -ljsoncpp -lncurses -static
+LDFLAGS=$(LIB_A) -lpthread -ljsoncpp -lncurses
 
 SRC=$(shell ls -R | grep -E '\.cpp')
 OBJ=$(SRC:.cpp=.o)

@@ -1,19 +1,18 @@
 ROOT_PATH=$(shell pwd)
 CC=g++
-SERVER=chat_client
+SERVER=chat_server
+DATA_POOL=$(ROOT_PATH)/../data_pool
 COMMON=$(ROOT_PATH)/../common
-WINDOW=$(ROOT_PATH)/../window
 LIB=$(ROOT_PATH)/../lib
 
-INCLUDE=-I$(COMMON) -I$(WINDOW) -I$(LIB)/jsoncpp/include -I$(LIB)/ncurse/include
-LIB_PATH=-L$(LIB)/jsoncpp/lib -L$(LIB)/ncurse/lib
+INCLUDE=-I$(COMMON) -I$(DATA_POOL) -I$(LIB)/jsoncpp/include
+LIB_PATH=-L$(LIB)/jsoncpp/lib
 
-LDFLAGS=-ljsoncpp -lncurses -lpthread
+LDFLAGS=-ljsoncpp -lpthread
 
 SRC=$(shell ls *.cpp)
 SRC+=$(shell cd $(COMMON);ls *.cpp)
-SRC+=$(shell cd $(WINDOW);ls *.cpp)
-
+SRC+=$(shell cd $(DATA_POOL);ls *.cpp)
 OBJ=$(SRC:.cpp=.o)
 
 $(SERVER):$(OBJ)
@@ -22,8 +21,8 @@ $(SERVER):$(OBJ)
 	$(CC) -c $< $(INCLUDE)
 %.o:$(COMMON)/%.cpp
 	$(CC) -c $< $(INCLUDE)
-%.o:$(WINDOW)/%.cpp
-	$(CC) -c $< $(INCLUDE) 
+%.o:$(DATA_POOL)/%.cpp
+	$(CC) -c $< $(INCLUDE)
 
 .PHONY:clean
 clean:
